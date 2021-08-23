@@ -14,7 +14,7 @@ body {
   align-items: center;
   position: absolute;
   z-index: 100;
-  background: red;
+  background: #e25822;
   width: 100%;
 }
 
@@ -33,7 +33,7 @@ h2 {
 
 .location-icon {
   font-size: 2rem;
-  color: orangered;
+  color: #e25822;
 }
 
 .location-info {
