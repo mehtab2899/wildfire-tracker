@@ -1,25 +1,24 @@
-import React, { useState, useEffect } from "react";
-import "./App.css";
-import Map from "./components/Map";
+import React, { useState, useEffect } from "react"
+import "./App.css"
+import Map from "./components/Map"
 
 const App = () => {
-  const [eventData, setEventData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [eventData, setEventData] = useState([])
+  const [loading, setLoading] = useState(false)
+  const apiUrl = "https://eonet.gsfc.nasa.gov/api/v2.1/events"
+
+  const fetchEvents = async () => {
+    setLoading(true)
+    const res = await fetch(apiUrl)
+
+    const { events } = await res.json()
+    setEventData(events)
+    setLoading(false)
+  }
 
   useEffect(() => {
-    const fetchEvents = async () => {
-      setLoading(true);
-      const res = await fetch(
-        "https://eonet.sci.gsfc.nasa.gov/api/v2.1/events"
-      );
-      const { events } = await res.json();
-      console.log(events);
-      setEventData(events);
-      setLoading(false);
-    };
-
-    fetchEvents();
-  }, []);
+    fetchEvents()
+  }, [])
 
   return (
     <div>
@@ -28,7 +27,7 @@ const App = () => {
       </div>
       {!loading ? <Map eventData={eventData} /> : <h2>Loading Data...</h2>}
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
